@@ -4,9 +4,9 @@
 package com.hbt.semillero.entities;
 
 /**
- * <b>Descripción:<b> Clase que determina
+ * <b>Descripción:<b> Clase que determina los valores del Estado de un Comic
  * <b>Caso de Uso:<b> 
- * @author Lenovo
+ * @author Gabriel Huertas
  * @version 
  */
 public enum EstadoEnum {

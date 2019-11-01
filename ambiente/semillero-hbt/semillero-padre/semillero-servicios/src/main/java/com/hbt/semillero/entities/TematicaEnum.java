@@ -4,9 +4,9 @@
 package com.hbt.semillero.entities;
 
 /**
- * <b>Descripción:<b> Clase que determina <b>Caso de Uso:<b>
+ * <b>Descripción:<b> Clase que determina los valores de la temática de un Comic
  * 
- * @author Lenovo
+ * @author Gabriel Huertas
  * @version
  */
 public enum TematicaEnum {

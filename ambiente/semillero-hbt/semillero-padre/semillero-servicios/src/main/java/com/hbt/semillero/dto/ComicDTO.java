@@ -31,7 +31,7 @@ public class ComicDTO implements Serializable{
 	/**
 	 * Comic's name
 	 */
-	private String name;
+	private String nombre;
 	
 	
 	private String editorial;
@@ -78,11 +78,11 @@ public class ComicDTO implements Serializable{
 	 * @param estado
 	 * @param cantidad
 	 */
-	public ComicDTO(String id, String name, String editorial, TematicaEnum tematicaEnum, String coleccion, Integer numeroPaginas,
+	public ComicDTO(String id, String nombre, String editorial, TematicaEnum tematicaEnum, String coleccion, Integer numeroPaginas,
 			BigDecimal price, String autores, Boolean color, LocalDate fechaVenta, String estado, Long cantidad) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.nombre = nombre;
 		this.editorial = editorial;
 		this.tematicaEnum = tematicaEnum;
 		this.coleccion = coleccion;
@@ -101,10 +101,10 @@ public class ComicDTO implements Serializable{
 	 * @param id
 	 * @param name
 	 */
-	public ComicDTO(String id, String name) {
+	public ComicDTO(String id, String nombre) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.nombre = nombre;
 	}
 
 
@@ -136,16 +136,16 @@ public class ComicDTO implements Serializable{
 	 * Metodo encargado de retornar el valor del atributo name
 	 * @return El name asociado a la clase
 	 */
-	public String getName() {
-		return name;
+	public String getNombre() {
+		return nombre;
 	}
 
 	/**
 	 * Metodo encargado de modificar el valor del atributo name
 	 * @param name El nuevo name a modificar.
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	/**
