@@ -11,6 +11,7 @@ import { GestionarComicComponent } from './semillero/componentes/gestionarComic/
 import { MenuComponent } from './semillero/componentes/menu/menu-component';
 import { BienvenidaComponent } from './semillero/componentes/home/bienvenida-component';
 import { MiComponenteComponent } from './semillero/componentes/mi-componente/mi-componente.component';
+import { ListarComicsComponent } from './semillero/componentes/listar-comics/listar-comics.component';
 
 // DTOs
 export { ComicDTO } from './semillero/dto/comic.dto';
@@ -22,7 +23,8 @@ export { ResultadoDTO } from './semillero/dto/resultado.dto';
     MenuComponent,
     BienvenidaComponent,
     GestionarComicComponent,
-    MiComponenteComponent
+    MiComponenteComponent,
+    ListarComicsComponent
   ],
   imports: [
     BrowserModule,

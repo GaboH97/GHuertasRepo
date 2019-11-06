@@ -1,0 +1,8 @@
+<div *ngFor="let comic of listaComics">
+    <pre>{{comic | json }}</pre>
+</div>
+<button type="button" class="btn btn-danger" (click)="borrarComic(2)">Borrar Comic</button>
+<div *ngIf="mostrarMensaje">
+    <button type="button" class="btn btn-success" (click)="ocultarMensaje()">Ocultar</button>
+    Se ha eliminado el comic {{nombreComicEliminado}}
+</div> 
