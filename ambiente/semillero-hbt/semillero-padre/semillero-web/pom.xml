@@ -18,6 +18,18 @@
 		<workingDirectory.project>${project.basedir}/src/main/angular</workingDirectory.project>
 	</properties>
 
+	<profiles>
+		<profile>
+			<id>compile-angular</id>
+			<activation>
+				<property>
+					<name>skipAngular</name>
+					<value>!true</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
+
 
 	<build>
 		<plugins>

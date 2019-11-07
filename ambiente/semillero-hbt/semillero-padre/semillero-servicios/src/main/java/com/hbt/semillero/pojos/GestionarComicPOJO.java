@@ -21,7 +21,7 @@ public class GestionarComicPOJO {
 
 	private List<ComicDTO> listaComics = null;
 
-	public ComicDTO crearComicDTO(String id, String nombre, String editorial, TematicaEnum tematicaEnum,
+	public ComicDTO crearComicDTO(Long id, String nombre, String editorial, TematicaEnum tematicaEnum,
 			String coleccion, Integer numeroPaginas, BigDecimal price, String autores, Boolean color,
 			LocalDate fechaVenta, String estado, Long cantidad) {
 
@@ -40,7 +40,7 @@ public class GestionarComicPOJO {
 
 	public void crearComicDTO() {
 		ComicDTO comicDTO = new ComicDTO();
-		comicDTO.setId("100");
+		comicDTO.setId(100L);
 		comicDTO.setNombre("Dragon ball Yamcha");
 		comicDTO.setEditorial("Planeta Cómic");
 		comicDTO.setTematica(TematicaEnum.AVENTURAS);
