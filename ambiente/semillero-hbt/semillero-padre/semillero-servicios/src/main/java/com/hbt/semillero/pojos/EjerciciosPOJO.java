@@ -5,6 +5,7 @@ package com.hbt.semillero.pojos;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,34 +19,33 @@ import java.util.Map;
 
 public class EjerciciosPOJO {
 
-	
 	private Map<String, Integer> winCount;
-	
+
 	/**
 	 * Mapa que tiene la cantidad de monedas
 	 */
 	private Map<Integer, Integer> coinWithQuantity;
-	
+
 	private ArrayList<Integer> numbers;
-	
+
 	/**
 	 * Constructor de la clase.
 	 */
 	public EjerciciosPOJO() {
 		numbers = new ArrayList<Integer>();
-		coinWithQuantity = new HashMap<>();		
+		coinWithQuantity = new HashMap<>();
 	}
-	
+
 	public boolean ejercicio1(String identifier) {
 		return Character.isJavaIdentifierStart(identifier.charAt(0))
 				&& identifier.substring(1, identifier.length() - 1).chars().allMatch(Character::isJavaIdentifierPart);
 	}
-	
+
 	/**
 	 * 
-	 * Metodo encargado de mirar si un número es primo
-	 * <b>Caso de Uso</b>
-	 * @author Gabriel Huertas 
+	 * Metodo encargado de mirar si un número es primo <b>Caso de Uso</b>
+	 * 
+	 * @author Gabriel Huertas
 	 * 
 	 * @param number
 	 * @return
@@ -60,11 +60,11 @@ public class EjerciciosPOJO {
 		}
 		return isPrime;
 	}
-	
+
 	/**
 	 * 
-	 * Metodo encargado de sumar n años a la edad de una persona
-	 * <b>Caso de Uso</b>
+	 * Metodo encargado de sumar n años a la edad de una persona <b>Caso de Uso</b>
+	 * 
 	 * @author Lenovo
 	 * 
 	 * @param birthDate
@@ -74,96 +74,147 @@ public class EjerciciosPOJO {
 	public LocalDate addYears(LocalDate birthDate, int years) {
 		return birthDate.plusYears(years);
 	}
-	
+
 	/**
 	 * 
-	 * Metodo encargado de  agregar un numero a la lista de números
-	 * <b>Caso de Uso</b>
+	 * Metodo encargado de agregar un numero a la lista de números <b>Caso de
+	 * Uso</b>
+	 * 
 	 * @author Gabriel Huertas
 	 *
 	 */
 	public void addNumber(Integer number) {
 		this.numbers.add(number);
 	}
-	
+
 	/**
 	 * 
-	 * Metodo encargado de ordernar los números de menor a mayor
-	 * <b>Caso de Uso</b>
+	 * Metodo encargado de ordernar los números de menor a mayor <b>Caso de Uso</b>
+	 * 
 	 * @author Gabriel Huertas
 	 *
 	 */
 	public void sortNumbers() {
 		Collections.sort(numbers);
 	}
-	
+
 	/**
 	 * Metodo encargado de retornar el valor del atributo numbers
+	 * 
 	 * @return El numbers asociado a la clase
 	 */
 	public ArrayList<Integer> getNumbers() {
 		return numbers;
 	}
-	
-	public void obtenerCambio(Integer cambio){
-		
-		if (cambio/1000 >= 1) {
-			coinWithQuantity.put(1000,cambio/1000);
+
+	public void obtenerCambio(Integer cambio) {
+
+		if (cambio / 1000 >= 1) {
+			coinWithQuantity.put(1000, cambio / 1000);
 		}
-		
-		cambio = cambio - (coinWithQuantity.get(1000)*1000);
-		
-		if (cambio/500 >= 1) {
-			coinWithQuantity.put(500,cambio/500);
+
+		cambio = cambio - (coinWithQuantity.get(1000) * 1000);
+
+		if (cambio / 500 >= 1) {
+			coinWithQuantity.put(500, cambio / 500);
 		}
-		
-		cambio = cambio - (coinWithQuantity.get(500)*500);
-		if (cambio/200 >= 1) {
-			coinWithQuantity.put(200,cambio/200);
+
+		cambio = cambio - (coinWithQuantity.get(500) * 500);
+		if (cambio / 200 >= 1) {
+			coinWithQuantity.put(200, cambio / 200);
 		}
-		
-		cambio = cambio - (coinWithQuantity.get(200)*200);
-	
-		if (cambio/100 >= 1) {
-			coinWithQuantity.put(100,cambio/100);
+
+		cambio = cambio - (coinWithQuantity.get(200) * 200);
+
+		if (cambio / 100 >= 1) {
+			coinWithQuantity.put(100, cambio / 100);
 		}
-		
-		cambio = cambio - (coinWithQuantity.get(100)*100);
-		
-		if (cambio/50 >= 1) {
-			coinWithQuantity.put(50,cambio/50);
-		}		
+
+		cambio = cambio - (coinWithQuantity.get(100) * 100);
+
+		if (cambio / 50 >= 1) {
+			coinWithQuantity.put(50, cambio / 50);
+		}
 	}
-	
+
 	/**
 	 * Metodo encargado de retornar el valor del atributo coinWithQuantity
+	 * 
 	 * @return El coinWithQuantity asociado a la clase
 	 */
 	public Map<Integer, Integer> getCoinWithQuantity() {
 		return coinWithQuantity;
 	}
-	
+
 	/**
 	 * 
 	 * Metodo encargado de lanzar una excepción
 	 * 
-	 * 		Opciones B y D.
+	 * Opciones B y D.
 	 * 
 	 * <b>Caso de Uso</b>
+	 * 
 	 * @author Lenovo
-	 * @throws Exception 
+	 * @throws Exception
 	 *
 	 */
 	public void ejercicio9() throws Exception {
-		
+
 		throw new Exception();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 
+	 * Metodo encargado de obtener el siguiente numero de la secuencia
+	 * <b>Caso de Uso</b>
+	 * @author Lenovo
+	 * 
+	 * @param num1
+	 * @return
+	 */
+	public int getNextNumber(Integer num1) {
+
+		int nextVal = 0;
+		int firstDigitOfFirstNumber = num1 / 10;
+		int secondDigitOfFirstNumber = num1 % 10;
+
+		int sum = firstDigitOfFirstNumber + secondDigitOfFirstNumber;
+
+		int next = sum + 1;
+
+		switch (next) {
+		case 2:
+			nextVal = 11;
+			break;
+		case 3:
+			nextVal = 21;
+			break;
+		case 4:
+			nextVal = 32;
+			break;
+		case 5:
+			nextVal = 23;
+			break;
+		case 6:
+			nextVal = 33;
+			break;
+		case 7:
+			nextVal = 25;
+
+			break;
+		case 8:
+			nextVal = 80;
+			break;
+		case 9:
+			nextVal = 45;
+			break;
+
+		default:
+			break;
+		}
+		
+		return nextVal;
+
+	}
+
 }

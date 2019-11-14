@@ -103,5 +103,16 @@ public class EjerciciosTest {
 		EjerciciosPOJO ejerciciosPojo = new EjerciciosPOJO();
 		
 	}
+	
+	public void ejercicio11() {
+		int number = 23;
+		
+		EjerciciosPOJO ejerciciosPojo = new EjerciciosPOJO();
+		
+		int nextNumb = ejerciciosPojo.getNextNumber(number);
+		
+		Assert.assertEquals(nextNumb, 33);
+
+	}
 
 }
