@@ -4,6 +4,7 @@
 package com.hbt.semillero.servicios;
 
 import java.time.LocalDate;
+import java.util.IntSummaryStatistics;
 
 import javax.ejb.Local;
 
@@ -37,31 +38,64 @@ public class EjerciciosTest {
 	@Test
 	public void ejercicio3() {
 		EjerciciosPOJO ejerciciosPOJO = new EjerciciosPOJO();
-		
-		//Es primo
+
+		// Es primo
 		int number = 5;
 		Assert.assertEquals(ejerciciosPOJO.isprime(number), true);
-		
-		//No es primo
+
+		// No es primo
 		number = 222;
 		Assert.assertEquals(ejerciciosPOJO.isprime(number), false);
-		
-		//No es primo
+
+		// No es primo
 		number = 0;
 		Assert.assertEquals(ejerciciosPOJO.isprime(number), false);
 	}
-	
+
 	@Test
 	public void ejercicio4() {
 		EjerciciosPOJO ejerciciosPOJO = new EjerciciosPOJO();
-		
+
 		LocalDate birthDate = LocalDate.of(1997, 8, 26);
-		
+
 		LocalDate thisYearDate = ejerciciosPOJO.addYears(birthDate, 22);
-		
+
 		LocalDate now = LocalDate.now();
+
+		Assert.assertTrue(thisYearDate.getYear() == now.getYear());
+	}
+
+	public void ejercicio5() {
+		EjerciciosPOJO ejerciciosPojo = new EjerciciosPOJO();
+
+		int number = 50;
+		ejerciciosPojo.addNumber(number);
+		number = 1;
+		ejerciciosPojo.addNumber(number);
+		number = 249;
+		ejerciciosPojo.addNumber(number);
+		number = -2;
+		ejerciciosPojo.addNumber(number);
+
+		ejerciciosPojo.sortNumbers();
+
+		IntSummaryStatistics summary = ejerciciosPojo.getNumbers().stream().mapToInt(n -> n).summaryStatistics();
+
+		int min = summary.getMin();
+
+		int max = summary.getMax();
+
+		Long count = summary.getCount();
 		
-		Assert.assertTrue(thisYearDate.getYear()== now.getYear());
+		//Verifica valor minimo
+		Assert.assertTrue(min == -2);
+		//Verifica valor máximo
+
+		Assert.assertTrue(max == 249);
+		//Verifica cantidad de elementos
+
+		Assert.assertTrue(count == -4);
+
 	}
 
 }

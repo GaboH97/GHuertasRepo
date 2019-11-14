@@ -4,6 +4,8 @@
 package com.hbt.semillero.pojos;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * <b>Descripción:<b> Clase que determina <b>Caso de Uso:<b>
@@ -14,6 +16,9 @@ import java.time.LocalDate;
 
 public class EjerciciosPOJO {
 
+	
+	private ArrayList<Integer> numbers;
+	
 	public boolean ejercicio1(String identifier) {
 		return Character.isJavaIdentifierStart(identifier.charAt(0))
 				&& identifier.substring(1, identifier.length() - 1).chars().allMatch(Character::isJavaIdentifierPart);
@@ -51,5 +56,35 @@ public class EjerciciosPOJO {
 	 */
 	public LocalDate addYears(LocalDate birthDate, int years) {
 		return birthDate.plusYears(years);
+	}
+	
+	/**
+	 * 
+	 * Metodo encargado de  agregar un numero a la lista de números
+	 * <b>Caso de Uso</b>
+	 * @author Gabriel Huertas
+	 *
+	 */
+	public void addNumber(Integer number) {
+		this.numbers.add(number);
+	}
+	
+	/**
+	 * 
+	 * Metodo encargado de ordernar los números de menor a mayor
+	 * <b>Caso de Uso</b>
+	 * @author Lenovo
+	 *
+	 */
+	public void sortNumbers() {
+		Collections.sort(numbers);
+	}
+	
+	/**
+	 * Metodo encargado de retornar el valor del atributo numbers
+	 * @return El numbers asociado a la clase
+	 */
+	public ArrayList<Integer> getNumbers() {
+		return numbers;
 	}
 }
