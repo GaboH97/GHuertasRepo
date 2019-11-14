@@ -3,6 +3,10 @@
  */
 package com.hbt.semillero.servicios;
 
+import java.time.LocalDate;
+
+import javax.ejb.Local;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -45,7 +49,19 @@ public class EjerciciosTest {
 		//No es primo
 		number = 0;
 		Assert.assertEquals(ejerciciosPOJO.isprime(number), false);
-
+	}
+	
+	@Test
+	public void ejercicio4() {
+		EjerciciosPOJO ejerciciosPOJO = new EjerciciosPOJO();
+		
+		LocalDate birthDate = LocalDate.of(1997, 8, 26);
+		
+		LocalDate thisYearDate = ejerciciosPOJO.addYears(birthDate, 22);
+		
+		LocalDate now = LocalDate.now();
+		
+		Assert.assertEquals(thisYearDate.getYear(), now.getYear());
 	}
 
 }

@@ -3,6 +3,8 @@
  */
 package com.hbt.semillero.pojos;
 
+import java.time.LocalDate;
+
 /**
  * <b>Descripción:<b> Clase que determina <b>Caso de Uso:<b>
  * 
@@ -35,5 +37,19 @@ public class EjerciciosPOJO {
 			}
 		}
 		return isPrime;
+	}
+	
+	/**
+	 * 
+	 * Metodo encargado de sumar n años a la edad de una persona
+	 * <b>Caso de Uso</b>
+	 * @author Lenovo
+	 * 
+	 * @param birthDate
+	 * @param years
+	 * @return
+	 */
+	public LocalDate addYears(LocalDate birthDate, int years) {
+		return birthDate.plusYears(years);
 	}
 }
