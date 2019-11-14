@@ -65,6 +65,7 @@ public class EjerciciosTest {
 		Assert.assertTrue(thisYearDate.getYear() == now.getYear());
 	}
 
+	@Test
 	public void ejercicio5() {
 		EjerciciosPOJO ejerciciosPojo = new EjerciciosPOJO();
 
@@ -94,8 +95,13 @@ public class EjerciciosTest {
 		Assert.assertTrue(max == 249);
 		//Verifica cantidad de elementos
 
-		Assert.assertTrue(count == -4);
-
+		Assert.assertTrue(count == 4);
+	}
+	
+	@Test
+	public void ejercicio8() {
+		EjerciciosPOJO ejerciciosPojo = new EjerciciosPOJO();
+		
 	}
 
 }

@@ -6,6 +6,8 @@ package com.hbt.semillero.pojos;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <b>Descripción:<b> Clase que determina <b>Caso de Uso:<b>
@@ -17,7 +19,22 @@ import java.util.Collections;
 public class EjerciciosPOJO {
 
 	
+	private Map<String, Integer> winCount;
+	
+	/**
+	 * Mapa que tiene la cantidad de monedas
+	 */
+	private Map<Integer, Integer> coinWithQuantity;
+	
 	private ArrayList<Integer> numbers;
+	
+	/**
+	 * Constructor de la clase.
+	 */
+	public EjerciciosPOJO() {
+		numbers = new ArrayList<Integer>();
+		coinWithQuantity = new HashMap<>();		
+	}
 	
 	public boolean ejercicio1(String identifier) {
 		return Character.isJavaIdentifierStart(identifier.charAt(0))
@@ -73,7 +90,7 @@ public class EjerciciosPOJO {
 	 * 
 	 * Metodo encargado de ordernar los números de menor a mayor
 	 * <b>Caso de Uso</b>
-	 * @author Lenovo
+	 * @author Gabriel Huertas
 	 *
 	 */
 	public void sortNumbers() {
@@ -87,4 +104,66 @@ public class EjerciciosPOJO {
 	public ArrayList<Integer> getNumbers() {
 		return numbers;
 	}
+	
+	public void obtenerCambio(Integer cambio){
+		
+		if (cambio/1000 >= 1) {
+			coinWithQuantity.put(1000,cambio/1000);
+		}
+		
+		cambio = cambio - (coinWithQuantity.get(1000)*1000);
+		
+		if (cambio/500 >= 1) {
+			coinWithQuantity.put(500,cambio/500);
+		}
+		
+		cambio = cambio - (coinWithQuantity.get(500)*500);
+		if (cambio/200 >= 1) {
+			coinWithQuantity.put(200,cambio/200);
+		}
+		
+		cambio = cambio - (coinWithQuantity.get(200)*200);
+	
+		if (cambio/100 >= 1) {
+			coinWithQuantity.put(100,cambio/100);
+		}
+		
+		cambio = cambio - (coinWithQuantity.get(100)*100);
+		
+		if (cambio/50 >= 1) {
+			coinWithQuantity.put(50,cambio/50);
+		}		
+	}
+	
+	/**
+	 * Metodo encargado de retornar el valor del atributo coinWithQuantity
+	 * @return El coinWithQuantity asociado a la clase
+	 */
+	public Map<Integer, Integer> getCoinWithQuantity() {
+		return coinWithQuantity;
+	}
+	
+	/**
+	 * 
+	 * Metodo encargado de lanzar una excepción
+	 * 
+	 * 		Opciones B y D.
+	 * 
+	 * <b>Caso de Uso</b>
+	 * @author Lenovo
+	 * @throws Exception 
+	 *
+	 */
+	public void ejercicio9() throws Exception {
+		
+		throw new Exception();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
