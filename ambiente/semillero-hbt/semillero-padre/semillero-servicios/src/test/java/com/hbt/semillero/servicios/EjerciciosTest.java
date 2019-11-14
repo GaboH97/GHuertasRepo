@@ -61,7 +61,7 @@ public class EjerciciosTest {
 		
 		LocalDate now = LocalDate.now();
 		
-		Assert.assertEquals(thisYearDate.getYear(), now.getYear());
+		Assert.assertTrue(thisYearDate.getYear()== now.getYear());
 	}
 
 }
