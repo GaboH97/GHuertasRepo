@@ -200,7 +200,6 @@ public class EjerciciosPOJO {
 			break;
 		case 7:
 			nextVal = 25;
-
 			break;
 		case 8:
 			nextVal = 80;
