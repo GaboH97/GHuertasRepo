@@ -35,9 +35,10 @@ public class GestionarComicRest {
 	@GET
 	@Path("/consultarComic")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ComicDTO consultarComic(@QueryParam("id")Long id) {
-		if(id!=null) {
-			gestionarComicEJB.consultarComic(id);
+	public ComicDTO consultarComic(@QueryParam("idComic") Long idComic) {
+		if(idComic!=null) {
+			System.out.println("ESTE ES EL HP ID "+idComic);
+			gestionarComicEJB.consultarComic(idComic.toString());
 		}
 		return null;
 	}

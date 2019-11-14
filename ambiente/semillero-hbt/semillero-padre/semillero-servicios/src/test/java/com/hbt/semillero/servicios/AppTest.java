@@ -125,58 +125,58 @@ public class AppTest {
 		Assert.assertTrue(!gestionarComicPOJO.getListaComics().isEmpty());
 	}
 
-	@Test
-	public void creartComicDTOTest() {
-		GestionarComicPOJO gestionarComicPOJO = new GestionarComicPOJO();
-
-		ComicDTO comicDTO = gestionarComicPOJO.crearComicDTO("101", "Captain America Corps 1-5 USA", "Panini Comics",
-				TematicaEnum.FANTASTICO, "BIBLIOTECA MARVEL", 128, new BigDecimal(5000),
-				"Phillippe Briones, Roger Stern", Boolean.FALSE, LocalDate.now(), "ACTIVO", 5L);
-
-		gestionarComicPOJO.agregarComicDTOLista(comicDTO);
-
-		Assert.assertNotNull(gestionarComicPOJO.getListaComics());
-		Assert.assertTrue(!gestionarComicPOJO.getListaComics().isEmpty());
-		Assert.assertTrue(gestionarComicPOJO.getListaComics().size() == 1);
-
-		comicDTO = new ComicDTO();
-
-		comicDTO.setId("100");
-		comicDTO.setNombre("Dragon ball Yamcha");
-		comicDTO.setEditorial("Planeta Cómic");
-		comicDTO.setTematica(TematicaEnum.AVENTURAS);
-		comicDTO.setColeccion("Manga Shonen");
-		comicDTO.setNumeroPaginas(100);
-		comicDTO.setPrice(new BigDecimal(2100));
-		comicDTO.setAutores("Dragon Garow Lee");
-		comicDTO.setColor(Boolean.TRUE);
-		comicDTO.setFechaVenta(LocalDate.now());
-		comicDTO.setEstado("ACTIVO");
-		comicDTO.setCantidad(20L);
-
-		gestionarComicPOJO.agregarComicDTOLista(comicDTO);
-
-		Assert.assertTrue(gestionarComicPOJO.getListaComics().size() > 1);
-
-		comicDTO = new ComicDTO();
-
-		comicDTO.setId("100");
-		comicDTO.setNombre("Dragon ball Yamcha");
-		comicDTO.setEditorial("Planeta Cómic");
-		comicDTO.setTematica(TematicaEnum.AVENTURAS);
-		comicDTO.setColeccion("Manga Shonen");
-		comicDTO.setNumeroPaginas(100);
-		comicDTO.setPrice(new BigDecimal(2100));
-		comicDTO.setAutores("Dragon Garow Lee");
-		comicDTO.setColor(Boolean.TRUE);
-		comicDTO.setFechaVenta(LocalDate.now());
-		comicDTO.setEstado("ACTIVO");
-		comicDTO.setCantidad(20L);
-
-		gestionarComicPOJO.agregarComicDTOLista(comicDTO);
-
-		Assert.assertTrue(gestionarComicPOJO.getListaComics().size() == 3);
-	}
+//	@Test
+//	public void creartComicDTOTest() {
+//		GestionarComicPOJO gestionarComicPOJO = new GestionarComicPOJO();
+//
+//		ComicDTO comicDTO = gestionarComicPOJO.crearComicDTO("101", "Captain America Corps 1-5 USA", "Panini Comics",
+//				TematicaEnum.FANTASTICO, "BIBLIOTECA MARVEL", 128, new BigDecimal(5000),
+//				"Phillippe Briones, Roger Stern", Boolean.FALSE, LocalDate.now(), "ACTIVO", 5L);
+//
+//		gestionarComicPOJO.agregarComicDTOLista(comicDTO);
+//
+//		Assert.assertNotNull(gestionarComicPOJO.getListaComics());
+//		Assert.assertTrue(!gestionarComicPOJO.getListaComics().isEmpty());
+//		Assert.assertTrue(gestionarComicPOJO.getListaComics().size() == 1);
+//
+//		comicDTO = new ComicDTO();
+//
+//		comicDTO.setId("100");
+//		comicDTO.setNombre("Dragon ball Yamcha");
+//		comicDTO.setEditorial("Planeta Cómic");
+//		comicDTO.setTematica(TematicaEnum.AVENTURAS);
+//		comicDTO.setColeccion("Manga Shonen");
+//		comicDTO.setNumeroPaginas(100);
+//		comicDTO.setPrice(new BigDecimal(2100));
+//		comicDTO.setAutores("Dragon Garow Lee");
+//		comicDTO.setColor(Boolean.TRUE);
+//		comicDTO.setFechaVenta(LocalDate.now());
+//		comicDTO.setEstado("ACTIVO");
+//		comicDTO.setCantidad(20L);
+//
+//		gestionarComicPOJO.agregarComicDTOLista(comicDTO);
+//
+//		Assert.assertTrue(gestionarComicPOJO.getListaComics().size() > 1);
+//
+//		comicDTO = new ComicDTO();
+//
+//		comicDTO.setId("100");
+//		comicDTO.setNombre("Dragon ball Yamcha");
+//		comicDTO.setEditorial("Planeta Cómic");
+//		comicDTO.setTematica(TematicaEnum.AVENTURAS);
+//		comicDTO.setColeccion("Manga Shonen");
+//		comicDTO.setNumeroPaginas(100);
+//		comicDTO.setPrice(new BigDecimal(2100));
+//		comicDTO.setAutores("Dragon Garow Lee");
+//		comicDTO.setColor(Boolean.TRUE);
+//		comicDTO.setFechaVenta(LocalDate.now());
+//		comicDTO.setEstado("ACTIVO");
+//		comicDTO.setCantidad(20L);
+//
+//		gestionarComicPOJO.agregarComicDTOLista(comicDTO);
+//
+//		Assert.assertTrue(gestionarComicPOJO.getListaComics().size() == 3);
+//	}
 
 	@Test
 	public void agregarComicDTOLista() {
@@ -189,6 +189,16 @@ public class AppTest {
 			cadenaInvertida = cadenaInvertida + cadena.charAt(x);
 		}
 		return cadenaInvertida;
+	}
+
+	@Test
+	public void comparaCadenas() {
+		String s1 = "street";
+		String s2;
+		 s2 = new String("street");
+	
+		Assert.assertEquals(s1, s2);
+		Assert.assertTrue(s1 == s2);
 	}
 
 	// TODO
