@@ -163,6 +163,7 @@ public class GestionarUsuarioRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public UsuarioDTO inactivarUsuario(@QueryParam("idUsuario") Long idUsuario) {
 		if (idUsuario != null) {
+			
 			UsuarioDTO usuarioInactivado = gestionarUsuarioEJB.inactivarUsuario(idUsuario);
 			return usuarioInactivado;
 		}
