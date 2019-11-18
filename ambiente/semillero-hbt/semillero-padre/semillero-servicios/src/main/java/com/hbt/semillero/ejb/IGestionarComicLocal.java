@@ -20,7 +20,9 @@ import com.hbt.semillero.dto.ComicDTO;
  */
 @Local
 public interface IGestionarComicLocal {
-
+	
+	
+	
 	/**
 	 * 
 	 * Metodo encargado de crear un comic y persistirlo

@@ -21,12 +21,12 @@ import javax.persistence.Table;
  * 
  * <b>Descripción:<b> Clase que determina <b>Caso de Uso:<b>
  * 
- * @author Lenovo
+ * @author Gabriel Huertas
  * @version
  */
 
 @Entity
-@Table(name = "COMICS")
+@Table(name = "COMIC")
 public class Comic implements Serializable {
 
 	/**
@@ -47,7 +47,8 @@ public class Comic implements Serializable {
 	private String editorial;
 
 	@Column(name = "SCTEMATICA")
-	private String tematicaEnum;
+	@Enumerated(value = EnumType.STRING)
+	private TematicaEnum tematicaEnum;
 
 	@Column(name = "SCCOLECCION")
 	private String coleccion;
@@ -68,6 +69,7 @@ public class Comic implements Serializable {
 	private LocalDate fechaVenta;
 
 	@Column(name = "SCESTADO")
+	@Enumerated(value = EnumType.STRING)
 	private EstadoEnum estadoEnum;
 
 	@Column(name = "SCCANTIDAD")
@@ -140,8 +142,7 @@ public class Comic implements Serializable {
 	 * @return El tematicaEnum asociado a la clase
 	 */
 	
-	@Enumerated(value = EnumType.STRING)
-	public String getTematicaEnum() {
+	public TematicaEnum getTematicaEnum() {
 		return tematicaEnum;
 	}
 
@@ -150,7 +151,7 @@ public class Comic implements Serializable {
 	 * 
 	 * @param tematicaEnum El nuevo tematicaEnum a modificar.
 	 */
-	public void setTematicaEnum(String tematicaEnum) {
+	public void setTematicaEnum(TematicaEnum tematicaEnum) {
 		this.tematicaEnum = tematicaEnum;
 	}
 
@@ -268,7 +269,6 @@ public class Comic implements Serializable {
 	 * @return El estadoEnum asociado a la clase
 	 */
 	
-	@Enumerated(value = EnumType.STRING)
 	public EstadoEnum getEstadoEnum() {
 		return estadoEnum;
 	}

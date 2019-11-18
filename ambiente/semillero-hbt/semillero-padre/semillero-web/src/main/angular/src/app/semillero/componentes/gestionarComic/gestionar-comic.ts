@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ComicDTO } from 'src/app/app.module';
 import { Router } from '@angular/router';
+import { GestionarComicService } from '../../services/gestionar.comic.service';
 
 /**
  * @description Componenete gestionar comic, el cual contiene la logica CRUD
@@ -52,7 +53,8 @@ export class GestionarComicComponent implements OnInit {
      * @author Diego Fernando Alvarez Silva <dalvarez@heinsohn.com.co>
      */
     constructor(private fb: FormBuilder,
-        private router: Router) {
+        private router: Router,
+        private gestionarComicService : GestionarComicService) {
         this.gestionarComicForm = this.fb.group({
             nombre: [null, Validators.required],
             editorial: [null],
@@ -74,6 +76,19 @@ export class GestionarComicComponent implements OnInit {
         this.comic = new ComicDTO();
         this.listaComics = new Array<ComicDTO>();
         this.crear = true;
+        this.consultarComics
+    }
+
+     /**
+     * @description Metodo encargado de consultar los comics existentes
+     * @author Diego Fernando Alvarez Silva <dalvarez@heinsohn.com.co>
+     */
+    public consultarComics() : void {
+        this.gestionarComicService.consultarComics().subscribe(listaComics => {
+            this.listaComics = listaComics;
+        }, error => {
+            console.log(error);
+        });
     }
 
     /**
@@ -98,11 +113,15 @@ export class GestionarComicComponent implements OnInit {
         this.comic.autores = this.gestionarComicForm.controls.autores.value;
         this.comic.color = this.gestionarComicForm.controls.color.value;
 
-        if (this.crear) {
-            this.idComic++;
-            this.comic.id = this.idComic + "";
-
-            this.listaComics.push(this.comic);
+        if (this.crear) {   
+            this.gestionarComicService.crearComic(this.comic).subscribe(resultadoDTO => {
+                if(resultadoDTO.exitoso) {
+                    this.consultarComics();
+                    this.limpiarFormulario();
+                }
+            }, error => {
+                console.log(error);
+            });
         } else {
             for(let i = 0; i < this.listaComics.length; i++){
                 if(this.listaComics[i].id == this.idComicEditar+""){
@@ -189,6 +208,14 @@ export class GestionarComicComponent implements OnInit {
      * @author Gabriel Ricardo Amaya Huertas <gabriel970826@gmail.com.co>
      */
     public borrarComic(index: number) {
-        this.listaComics.splice(index, 1);
+        let comicDto = this.listaComics[index];
+        this.gestionarComicService.eliminarComic(comicDto.id).subscribe(resultadoDTO => {
+            if(resultadoDTO.exitoso) {
+                this.consultarComics();
+                this.limpiarFormulario();
+            }
+        }, error => {
+            console.log(error);
+        });
     }
 }

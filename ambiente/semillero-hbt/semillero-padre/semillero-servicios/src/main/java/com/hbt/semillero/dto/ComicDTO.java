@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+import com.hbt.semillero.entities.EstadoEnum;
 import com.hbt.semillero.entities.TematicaEnum;
 
 /**
@@ -58,7 +59,7 @@ public class ComicDTO implements Serializable{
 	private LocalDate fechaVenta;
 	
 	//To-do
-	private String estado;
+	private EstadoEnum estadoEnum;
 	
 	//To-do
 	private Long cantidad;
@@ -79,7 +80,7 @@ public class ComicDTO implements Serializable{
 	 * @param cantidad
 	 */
 	public ComicDTO(Long id, String nombre, String editorial, TematicaEnum tematicaEnum, String coleccion, Integer numeroPaginas,
-			BigDecimal price, String autores, Boolean color, LocalDate fechaVenta, String estado, Long cantidad) {
+			BigDecimal price, String autores, Boolean color, LocalDate fechaVenta, EstadoEnum estadoEnum, Long cantidad) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -91,7 +92,7 @@ public class ComicDTO implements Serializable{
 		this.autores = autores;
 		this.color = color;
 		this.fechaVenta = fechaVenta;
-		this.estado = estado;
+		this.estadoEnum = estadoEnum;
 		this.cantidad = cantidad;
 	}
 	
@@ -177,7 +178,7 @@ public class ComicDTO implements Serializable{
 	 * Metodo encargado de modificar el valor del atributo tematica
 	 * @param tematica El nuevo tematica a modificar.
 	 */
-	public void setTematica(TematicaEnum tematicaEnum) {
+	public void setTematicaEnum(TematicaEnum tematicaEnum) {
 		this.tematicaEnum = tematicaEnum;
 	}
 
@@ -281,16 +282,16 @@ public class ComicDTO implements Serializable{
 	 * Metodo encargado de retornar el valor del atributo estado
 	 * @return El estado asociado a la clase
 	 */
-	public String getEstado() {
-		return estado;
+	public EstadoEnum getEstadoEnum() {
+		return estadoEnum;
 	}
 
 	/**
 	 * Metodo encargado de modificar el valor del atributo estado
 	 * @param estado El nuevo estado a modificar.
 	 */
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setEstadoEnum(EstadoEnum estadoEnum) {
+		this.estadoEnum = estadoEnum;
 	}
 
 	/**
@@ -308,8 +309,5 @@ public class ComicDTO implements Serializable{
 	public void setCantidad(Long cantidad) {
 		this.cantidad = cantidad;
 	}
-	
-	
-	
 	
 }

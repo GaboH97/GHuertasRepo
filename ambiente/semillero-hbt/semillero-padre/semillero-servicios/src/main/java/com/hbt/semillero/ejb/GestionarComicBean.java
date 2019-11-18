@@ -3,6 +3,7 @@
  */
 package com.hbt.semillero.ejb;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,22 +33,19 @@ public class GestionarComicBean implements IGestionarComicLocal {
 	/*
 	 * Agregar interfaz
 	 */
+
 	/**
 	 * 
-	 * @see com.hbt.semillero.ejb.IGestionarComicLocal#crearComic(com.hbt.semillero.dto.ComicDTO)
+	 * Metodo encargado de crear un comic 
+	 * <b>Caso de Uso</b>
+	 * @author Gabriel Huertas
+	 * 
+	 * @param comicDTO
 	 */
-	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)//Crea una transaccion nueva
 	public void crearComic(ComicDTO comicDTO) {
-
 		Comic comic = comicDTOToComic(comicDTO);
-
-		// TODO
-		/*
-		 * Llenar con los demás datos
-		 */
-
 		em.persist(comic);
-
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -57,18 +55,12 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		em.merge(comic);
 	}
 
+	@Override
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public ComicDTO consultarComic(String id) {
 		Comic comic = em.find(Comic.class, Long.parseLong(id));
 		ComicDTO comicDTO = convertirComicToComicDTO(comic);
 		return comicDTO;
-	}
-
-	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-	public List<ComicDTO> consultarTodos() {
-		em.createNativeQuery("SELECT c from Comic").getResultList();
-		List<Comic> resultados = (List<Comic>) em.createQuery("select c from Comic").getResultList();
-		return null;
 	}
 
 	/**
@@ -99,7 +91,6 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		Comic comic = em.find(Comic.class, id);
 		if (comic != null) {
 			em.remove(comic);
-
 		}
 	}
 
@@ -109,8 +100,12 @@ public class GestionarComicBean implements IGestionarComicLocal {
 	@Override
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public List<ComicDTO> consultarComics() {
-		return ((List<Comic>) em.createQuery("Select c from Comic c").getResultList()).stream()
-				.map(comic -> convertirComicToComicDTO(comic)).collect(Collectors.toList());
+		List<ComicDTO> resultadosComicDTO = new ArrayList<ComicDTO>();
+		List<Comic> resultados = em.createQuery("select c from Comic c").getResultList();
+		for (Comic comic : resultados) {
+			resultadosComicDTO.add(convertirComicToComicDTO(comic));
+		}
+		return resultadosComicDTO;
 	}
 
 	private Comic comicDTOToComic(ComicDTO comicDTO) {
@@ -121,12 +116,12 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		comic.setColeccion(comicDTO.getColeccion());
 		comic.setColor(comicDTO.getColor());
 		comic.setEditorial(comicDTO.getEditorial());
-		// comic.setEstadoEnum(comicDTO.getEstado());
+		 comic.setEstadoEnum(comicDTO.getEstadoEnum());
 		comic.setFechaVenta(comicDTO.getFechaVenta());
 		comic.setNombre(comicDTO.getNombre());
 		comic.setNumeroPaginas(comicDTO.getNumeroPaginas());
 		comic.setPrecio(comicDTO.getPrice());
-		// comic.setTematicaEnum(comicDTO.getTematica());
+		 comic.setTematicaEnum(comicDTO.getTematicaEnum());
 
 		return comic;
 	}
@@ -138,14 +133,14 @@ public class GestionarComicBean implements IGestionarComicLocal {
 		}
 		comicDTO.setNombre(comic.getNombre());
 		comicDTO.setEditorial(comic.getEditorial());
-		// comicDTO.setTematicaEnum(comic.getTematicaEnum());
+		comicDTO.setTematicaEnum(comic.getTematicaEnum());
 		comicDTO.setColeccion(comic.getColeccion());
 		comicDTO.setNumeroPaginas(comic.getNumeroPaginas());
 		comicDTO.setPrice(comic.getPrecio());
 		comicDTO.setAutores(comic.getAutores());
 		comicDTO.setColor(comic.getColor());
 		comicDTO.setFechaVenta(comic.getFechaVenta());
-		// comicDTO.setEstadoEnum(comic.getEstadoEnum());
+		comicDTO.setEstadoEnum(comic.getEstadoEnum());
 		comicDTO.setCantidad(comic.getCantidad());
 		return comicDTO;
 	}

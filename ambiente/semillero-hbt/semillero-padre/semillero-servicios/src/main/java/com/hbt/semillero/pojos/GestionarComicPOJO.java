@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.hbt.semillero.dto.ComicDTO;
+import com.hbt.semillero.entities.EstadoEnum;
 import com.hbt.semillero.entities.TematicaEnum;
 
 /**
@@ -23,7 +24,7 @@ public class GestionarComicPOJO {
 
 	public ComicDTO crearComicDTO(Long id, String nombre, String editorial, TematicaEnum tematicaEnum,
 			String coleccion, Integer numeroPaginas, BigDecimal price, String autores, Boolean color,
-			LocalDate fechaVenta, String estado, Long cantidad) {
+			LocalDate fechaVenta, EstadoEnum estado, Long cantidad) {
 
 		ComicDTO comicDTO = new ComicDTO(id, nombre, editorial, tematicaEnum, coleccion, numeroPaginas, price, autores,
 				color, fechaVenta, estado, cantidad);
@@ -43,14 +44,14 @@ public class GestionarComicPOJO {
 		comicDTO.setId(100L);
 		comicDTO.setNombre("Dragon ball Yamcha");
 		comicDTO.setEditorial("Planeta Cómic");
-		comicDTO.setTematica(TematicaEnum.AVENTURAS);
+		comicDTO.setTematicaEnum(TematicaEnum.AVENTURAS);
 		comicDTO.setColeccion("Manga Shonen");
 		comicDTO.setNumeroPaginas(100);
 		comicDTO.setPrice(new BigDecimal(2100));
 		comicDTO.setAutores("Dragon Garow Lee");
 		comicDTO.setColor(Boolean.TRUE);
 		comicDTO.setFechaVenta(LocalDate.now());
-		comicDTO.setEstado("ACTIVO");
+		comicDTO.setEstadoEnum(EstadoEnum.ACTIVO);
 		comicDTO.setCantidad(20L);
 
 		if (listaComics == null) {
