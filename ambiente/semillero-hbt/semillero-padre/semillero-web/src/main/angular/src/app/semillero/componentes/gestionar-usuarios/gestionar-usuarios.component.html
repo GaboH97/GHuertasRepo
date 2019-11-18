@@ -1,0 +1,131 @@
+<div class="container">
+    <form [formGroup]="personaForm">
+        <h1>Gestionar Personas</h1>
+        <hr>
+
+        <div class="row">
+            <div class="col-6">
+                <label for="nombreComic">Nombre:</label>
+                <input type="text" class="form-control" id="nombreComic" formControlName="nombre"
+                    [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" maxlength="7">
+                <div *ngIf="submitted && f.nombre.errors">
+                    <span class="text-danger" *ngIf="f.nombre.errors.required">Campo requerido.</span>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <label for="numIdentificacion">Numero Identificacion</label>
+                <input type="text" class="form-control" id="numeroIdentificacion" formControlName="numIdentificacion">
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <span></span>
+            </div>
+            <div class="col-6 text-right">
+                <button type="button" class="btn btn-primary" (click)="crearPersona()">Crear Persona</button>
+            </div>
+        </div>
+
+        <br>
+
+    </form>
+
+    <div class="row" [hidden]="listaPersonas.length === 0">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Numero Identificacion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let persona of listaPersonas; let i=index;">
+                        <td>{{persona.id}}</td>
+                        <td>{{persona.nombre}}</td>
+                        <td>{{persona.numIdentificacion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <h1>Gestionar Usuarios</h1>
+    <hr>
+
+    <form [formGroup]="usuarioForm">
+
+        <div class="row">
+            <!-- <div class="col-6">
+                <label for="nombreUsuario">Nombre:</label>
+                <input type="text" class="form-control" id="nombreUsuario" formControlName="nombre"
+                    [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" maxlength="7">
+                <div *ngIf="submitted && f.nombre.errors">
+                    <span class="text-danger" *ngIf="f.nombre.errors.required">Campo requerido.</span>
+                </div>
+            </div> -->
+
+            <div class="col-6">
+                <label for="">Fecha Creación</label>
+                <input type="date" class="form-control" id="fechaCreacion" formControlName="fechaCreacion">
+            </div>
+
+            <div class="col-6">
+                <label for="persona">Persona</label>
+                <select name="persona" formControlName="persona">
+                    <option *ngFor="let persona of listaPersonas" [ngValue]="persona">
+                        {{persona.nombre}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <span></span>
+            </div>
+            <div class="col-6 text-right">
+                <button type="button" class="btn btn-primary" (click)="crearUsuario()">Crear Usuario</button>
+            </div>
+        </div>
+        <br>
+    </form>
+
+    <div class="row" [hidden]="listaUsuarios.length === 0">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Persona</th>
+                        <th scope="col">Fecha Creacion</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of listaUsuarios; let i=index;">
+                        <td>{{usuario.id}}</td>
+                        <td>{{usuario.nombre}}</td>
+                        <td>{{usuario.persona.nombre}}</td>
+                        <td>{{usuario.fechaCreacion}}</td>
+                        <td>{{usuario.estadoEnum | uppercase}}</td>
+                        <td *ngIf="usuario.estadoEnum ==='ACTIVO'">
+                            
+                            <i class="far fa-times-circle 2x ml-1" (click)="inactivarUsuario(usuario.id)" title="Inactivar"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -44,6 +44,14 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['bienvenida']);
   }
 
+  /**
+   * @description Metodo encargado de direccionar al componente de gestionar Usuarios
+   * @author Gabriel Huertas <gabriel970826@gmail.com>
+   */
+  public navegarGestionarUsuarios(): void {
+    this.router.navigate(['gestionar-usuarios']);
+  }
+
   public navegarGestionarCompra(): void {
     //WIP
   }

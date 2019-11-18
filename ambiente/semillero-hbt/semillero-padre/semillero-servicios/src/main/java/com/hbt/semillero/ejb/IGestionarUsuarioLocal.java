@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import com.hbt.semillero.dto.ComicDTO;
+import com.hbt.semillero.dto.PersonaDTO;
 import com.hbt.semillero.dto.UsuarioDTO;
 
 /**
@@ -73,4 +74,22 @@ public interface IGestionarUsuarioLocal {
 	 * @return
 	 */
 	public List<UsuarioDTO> consultarUsuarios();
+
+	/**
+	 * Metodo encargado de 
+	 * <b>Caso de Uso</b>
+	 * @author Lenovo
+	 * 
+	 * @param personaDTO
+	 */
+	public void crearPersona(PersonaDTO personaDTO);
+
+	/**
+	 * Metodo encargado de 
+	 * <b>Caso de Uso</b>
+	 * @author Lenovo
+	 * 
+	 * @return
+	 */
+	public List<PersonaDTO> consultarPersonas();
 }

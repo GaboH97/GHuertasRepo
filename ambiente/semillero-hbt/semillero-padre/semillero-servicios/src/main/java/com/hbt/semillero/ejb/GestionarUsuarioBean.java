@@ -38,6 +38,8 @@ public class GestionarUsuarioBean implements IGestionarUsuarioLocal{
 	@PersistenceContext
 	private EntityManager em;
 	
+	
+	
 	/** 
 	 * @see com.hbt.semillero.ejb.IGestionarUsuarioLocal#crearUsuario(com.hbt.semillero.dto.UsuarioDTO)
 	 */
@@ -87,8 +89,8 @@ public class GestionarUsuarioBean implements IGestionarUsuarioLocal{
 		Usuario usuario = em.find(Usuario.class, idUsuario);
 		if(usuario.getEstadoEnum().equals(EstadoUsuarioEnum.ACTIVO)) {
 			usuario.setEstadoEnum(EstadoUsuarioEnum.INACTIVO);
+			em.merge(usuario);
 		}
-		em.persist(usuario);
 		return usuarioToUsuarioDTO(usuario);
 	}
 
@@ -134,6 +136,19 @@ public class GestionarUsuarioBean implements IGestionarUsuarioLocal{
 		List<Usuario> resultados = em.createQuery("select u from Usuario u").getResultList();
 		for (Usuario usuario : resultados) {
 			resultadosUsuarioDTO.add(usuarioToUsuarioDTO(usuario));
+		}
+		return resultadosUsuarioDTO;
+	}
+	
+	/** 
+	 * @see com.hbt.semillero.ejb.IGestionarUsuarioLocal#consultarPersonas()
+	 */
+	@Override
+	public List<PersonaDTO> consultarPersonas() {
+		List<PersonaDTO> resultadosUsuarioDTO = new ArrayList<PersonaDTO>();
+		List<Persona> resultados = em.createQuery("select p from Persona p").getResultList();
+		for (Persona persona : resultados) {
+			resultadosUsuarioDTO.add(personaToPersonaDTO(persona));
 		}
 		return resultadosUsuarioDTO;
 	}
@@ -196,7 +211,7 @@ public class GestionarUsuarioBean implements IGestionarUsuarioLocal{
 			personaDTO.setId(persona.getId());
 		}
 		personaDTO.setNombre(persona.getNombre());
-		personaDTO.setNumIdentificación(persona.getNumIdentificación());
+		personaDTO.setNumIdentificacion(persona.getNumIdentificacion());
 		return personaDTO;
 	}
 	
@@ -213,7 +228,7 @@ public class GestionarUsuarioBean implements IGestionarUsuarioLocal{
 		Persona persona = new Persona();
 		persona.setId(personaDTO.getId());
 		persona.setNombre(personaDTO.getNombre());
-		persona.setNumIdentificación(personaDTO.getNumIdentificación());
+		persona.setNumIdentificación(personaDTO.getNumIdentificacion());
 
 		return persona;
 	}
@@ -283,6 +298,15 @@ public class GestionarUsuarioBean implements IGestionarUsuarioLocal{
 	public boolean isAccountExpired(Usuario usuario) {
 		long yearsBetween = ChronoUnit.YEARS.between(usuario.getFechaCreacion(), LocalDate.now());
 		return yearsBetween > 0;
+	}
+	
+	/** 
+	 * @see com.hbt.semillero.ejb.IGestionarUsuarioLocal#crearPersona(com.hbt.semillero.dto.PersonaDTO)
+	 */
+	@Override
+	public void crearPersona(PersonaDTO personaDTO) {
+		Persona persona = personaDTOToPersona(personaDTO);
+		em.persist(persona);
 	}
 
 }

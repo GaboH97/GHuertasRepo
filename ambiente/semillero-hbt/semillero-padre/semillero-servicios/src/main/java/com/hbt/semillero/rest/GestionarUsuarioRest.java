@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.hbt.semillero.dto.PersonaDTO;
 import com.hbt.semillero.dto.ResultadoDTO;
 import com.hbt.semillero.dto.UsuarioDTO;
 import com.hbt.semillero.ejb.IGestionarUsuarioLocal;
@@ -33,6 +34,31 @@ public class GestionarUsuarioRest {
 	@EJB
 	private IGestionarUsuarioLocal gestionarUsuarioEJB;
 	
+	
+	/**
+	 * 
+	 * Metodo encargado de ofrecer el servicio para crear un usuario
+	 * <b>Caso de Uso</b>
+	 * @author Lenovo
+	 * 
+	 * @param usuarioDTO
+	 * @return
+	 */
+	@POST
+	@Path("/crearPersona")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ResultadoDTO crearPersona(PersonaDTO personaDTO) {
+		ResultadoDTO resultadoDTO  = null;
+		try {
+			gestionarUsuarioEJB.crearPersona(personaDTO);
+			resultadoDTO = new ResultadoDTO(Boolean.TRUE, "Persona creada exitosamente");
+		} catch (Exception e) {
+			resultadoDTO = new ResultadoDTO(Boolean.FALSE, "Error: "+e.getMessage());
+			
+		}
+		return resultadoDTO;
+	}
 	
 	/**
 	 * 
@@ -75,6 +101,13 @@ public class GestionarUsuarioRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<UsuarioDTO> consultarUsuarios() {
 		return gestionarUsuarioEJB.consultarUsuarios();
+	}
+	
+	@GET
+	@Path("/consultarPersonas")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<PersonaDTO> consultarPersonas() {
+		return gestionarUsuarioEJB.consultarPersonas();
 	}
 	
 	/**
@@ -128,7 +161,7 @@ public class GestionarUsuarioRest {
 	@POST
 	@Path("/inactivar")
 	@Produces(MediaType.APPLICATION_JSON)
-	public UsuarioDTO inactivarUsuarioComic(@QueryParam("idUsuario") Long idUsuario) {
+	public UsuarioDTO inactivarUsuario(@QueryParam("idUsuario") Long idUsuario) {
 		if (idUsuario != null) {
 			UsuarioDTO usuarioInactivado = gestionarUsuarioEJB.inactivarUsuario(idUsuario);
 			return usuarioInactivado;

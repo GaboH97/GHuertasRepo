@@ -39,7 +39,7 @@ public class Persona  implements Serializable{
 	private String nombre;
 		
 	@Column(name = "SCNUMIDENTIFICACION")
-	private Long numIdentificación;
+	private Long numIdentificacion;
 	
 	/**
 	 * Constructor de la clase.
@@ -83,16 +83,16 @@ public class Persona  implements Serializable{
 	 * Metodo encargado de retornar el valor del atributo numIdentificación
 	 * @return El numIdentificación asociado a la clase
 	 */
-	public Long getNumIdentificación() {
-		return numIdentificación;
+	public Long getNumIdentificacion() {
+		return numIdentificacion;
 	}
 
 	/**
 	 * Metodo encargado de modificar el valor del atributo numIdentificación
 	 * @param numIdentificación El nuevo numIdentificación a modificar.
 	 */
-	public void setNumIdentificación(Long numIdentificación) {
-		this.numIdentificación = numIdentificación;
+	public void setNumIdentificación(Long numIdentificacion) {
+		this.numIdentificacion = numIdentificacion;
 	}
 
 }
